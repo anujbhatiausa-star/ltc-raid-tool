@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ltc-raid-server
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node src/index.js
+    plan: free
+    envVars:
+      - key: CLIENT_URL
+        value: https://ltc-raid-tool.vercel.app
+      - key: PORT
+        value: 3001
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
