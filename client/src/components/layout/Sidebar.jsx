@@ -92,6 +92,7 @@ export default function Sidebar() {
       <aside
         className={`
           fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-[#1e2433]
+          border-t-[4px] border-t-[#185FA5]
           transition-transform duration-200
           ${open ? 'translate-x-0' : '-translate-x-full'}
           lg:relative lg:translate-x-0 lg:flex
@@ -154,6 +155,11 @@ export default function Sidebar() {
             </svg>
             Sign out
           </button>
+        </div>
+
+        {/* Version tag */}
+        <div className="border-t border-white/5 px-5 py-2.5">
+          <p className="text-center text-xs text-white/20">LTC RAID Tool v1.0</p>
         </div>
       </aside>
     </>

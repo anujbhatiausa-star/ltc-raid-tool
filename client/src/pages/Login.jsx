@@ -25,15 +25,19 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm">
-        {/* Logo card */}
+        {/* Hero */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1e2433]">
             <span className="text-lg font-bold text-white">LTC</span>
           </div>
-          <h1 className="text-2xl font-semibold text-gray-900">RAID Management Tool</h1>
-          <p className="mt-1 text-sm text-gray-500">Lead to Cash Transformation Programme</p>
+          <h1 className="text-2xl font-bold text-gray-900">LTC RAID Management</h1>
+          <p className="mt-1 text-sm font-semibold text-[#185FA5]">Lead to Cash Transformation Programme</p>
+          <p className="mt-3 text-sm text-gray-500 leading-relaxed">
+            A programme governance tool for tracking Risks, Assumptions, Issues and Decisions
+            across the full Lead to Cash lifecycle.
+          </p>
         </div>
 
         {/* Form */}
@@ -85,19 +89,28 @@ export default function Login() {
           </form>
         </div>
 
-        {/* Demo credentials */}
-        <div className="mt-4 rounded-lg border border-gray-200 bg-white px-4 py-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Demo credentials</p>
-          <div className="space-y-1 text-xs text-gray-600">
-            <div className="flex justify-between">
-              <span className="font-medium">PM (full access)</span>
-              <span className="font-mono">pm@ltc-demo.com / Demo@1234</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="font-medium">Exec (read-only)</span>
-              <span className="font-mono">exec@ltc-demo.com / Demo@1234</span>
-            </div>
-          </div>
+        {/* Demo credential cards */}
+        <div className="mt-4 space-y-2">
+          <p className="text-center text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+            Click a card to auto-fill
+          </p>
+          {[
+            { role: 'Programme Manager', email: 'pm@ltc-demo.com', password: 'Demo@1234' },
+            { role: 'Executive Sponsor (Karin Maday)', email: 'exec@ltc-demo.com', password: 'Demo@1234' },
+          ].map(({ role, email, password }) => (
+            <button
+              key={email}
+              type="button"
+              onClick={() => { setEmail(email); setPassword(password); }}
+              className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-left transition-colors hover:border-[#185FA5] hover:bg-blue-50 group"
+            >
+              <p className="text-xs font-semibold text-gray-700 group-hover:text-[#185FA5]">{role}</p>
+              <p className="mt-0.5 font-mono text-xs text-gray-400">{email} / {password}</p>
+            </button>
+          ))}
+          <p className="pt-1 text-center text-xs text-gray-400">
+            PM view has full access. Exec view is read-only dashboard.
+          </p>
         </div>
       </div>
     </div>

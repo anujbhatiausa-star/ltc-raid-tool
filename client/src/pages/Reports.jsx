@@ -26,12 +26,12 @@ const STATUS_PILL = {
 };
 
 const SUGGESTED_QUERIES = [
-  'Show me all resolved and closed risks',
-  'Which critical items are overdue?',
-  'What is Karin Maday responsible for?',
+  'What should I be worried about this week?',
+  'Which critical items need exec attention?',
   'Summarise all open issues in Billing',
-  'Which stages have the most open items?',
   'What decisions are still pending?',
+  'Show me items owned by Anuj Bhatia',
+  'Which stages have the most risk?',
 ];
 
 function Section({ title, description, children }) {
@@ -260,7 +260,7 @@ function QueryAssistant() {
   return (
     <div className="space-y-4">
       {/* Input card */}
-      <div className="rounded-lg border border-gray-200 bg-white p-5">
+      <div className="rounded-xl border border-blue-200 border-l-4 border-l-[#185FA5] bg-blue-50 p-5">
         <div className="flex gap-2">
           <input
             type="text"
@@ -319,7 +319,7 @@ function QueryAssistant() {
               <p className="text-sm font-medium text-gray-800 truncate">{current.question}</p>
             </div>
             <div className="ml-3 flex flex-shrink-0 items-center gap-2">
-              <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">GPT-4o</span>
+              <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">GPT-4o mini</span>
               {!streaming && current.answer && (
                 <button
                   onClick={() => navigator.clipboard?.writeText(current.answer)}
@@ -610,19 +610,22 @@ function CSVExport() {
 export default function Reports() {
   return (
     <div className="max-w-4xl space-y-8">
+      {/* Query Assistant — featured at the very top */}
+      <div>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#185FA5]">
+          Ask anything about the programme in plain English
+        </p>
+        <QueryAssistant />
+      </div>
+
+      <Divider />
+
       <div>
         <h1 className="text-xl font-bold text-gray-900">Reports &amp; AI Insights</h1>
         <p className="text-sm text-gray-500 mt-0.5">
           AI-generated programme intelligence powered by GPT-4o · Data export
         </p>
       </div>
-
-      <Section
-        title="Query Assistant"
-        description="Ask any question about the RAID register in plain English. GPT-4o answers using live data."
-      >
-        <QueryAssistant />
-      </Section>
 
       <Divider />
 
